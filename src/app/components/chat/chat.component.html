@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    Chat
+  </div>
+  <div class="card-body" id="chat-messages">
+    <div
+      class="alert"
+      [ngClass]="{ 'alert-success': true, 'alert-primary': false }"
+      role="alert"
+      *ngFor="let message of listMessages"
+    >
+      <p>Name: {{ message.to }}:</p>
+      <label>
+        {{ message.message }}
+      </label>
+    </div>
+    <!-- <div class="alert alert-success" role="alert">
+         A simple primary alert—check it out!
+       </div> -->
+  </div>
+  <div class="card-footer text-right">
+    <form autocomplete="off" (submit)="enviar()">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          name="message"
+          class="form-control"
+          placeholder="Write Message + press Intro to send"
+          [(ngModel)]="textMessage"
+        />
+        <!-- <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit">
+            Enviar
+          </button>
+        </div> -->
+      </div>
+    </form>
+  </div>
+</div>

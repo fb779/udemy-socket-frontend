@@ -1,0 +1,8 @@
+<nav class="navbar mt-5 fixed-bottom navbar-dark bg-dark text-white">
+  <!-- Navbar content -->
+  <div class="text-right">
+    <span> Estatus socket: </span>
+    <span *ngIf="_wsk.socketStatus">Online</span>
+    <span *ngIf="!_wsk.socketStatus">Offline</span>
+  </div>
+</nav>

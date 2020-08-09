@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sk-frontend"
+    }
+  },
+  "defaultProject": "sk-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
