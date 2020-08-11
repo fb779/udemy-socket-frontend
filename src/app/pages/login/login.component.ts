@@ -11,11 +11,11 @@ export class LoginComponent implements OnInit {
   name: string = '';
   room: string = '';
 
-  constructor(private _router: Router, private _ws: WebSocketService) {}
-
-  ngOnInit(): void {
-    this._ws.deleteUserStorage();
+  constructor(private _router: Router, private _ws: WebSocketService) {
+    // this._ws.logoutWS();
   }
+
+  ngOnInit(): void {}
 
   ingresar() {
     if (!this.name) {

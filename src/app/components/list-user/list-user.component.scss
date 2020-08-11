@@ -1,0 +1,13 @@
+.card {
+  height: 100%;
+}
+
+.card-body {
+  padding: 5px;
+}
+
+#list-users {
+  min-height: 350px;
+  max-height: 410px;
+  overflow-y: scroll;
+}

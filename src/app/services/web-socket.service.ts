@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
@@ -10,7 +11,7 @@ export class WebSocketService {
   socketStatus: boolean = false;
   private user: User = null;
 
-  constructor(private _sk: Socket) {
+  constructor(private _router: Router, private _sk: Socket) {
     this.loadUserStorage();
     this.checkStatus();
   }
@@ -18,6 +19,7 @@ export class WebSocketService {
   checkStatus() {
     this._sk.on('connect', () => {
       this.socketStatus = true;
+      this.loadUserStorage();
     });
 
     this._sk.on('disconnect', () => {
@@ -26,7 +28,7 @@ export class WebSocketService {
   }
 
   emit(event: string, payload?: any, callback?: Function) {
-    payload.tk = 'mi token de envio';
+    // payload.tk = 'mi token de envio';
     this._sk.emit(event, payload, callback);
   }
 
@@ -47,10 +49,21 @@ export class WebSocketService {
     });
   }
 
+  logoutWS() {
+    this.deleteUserStorage();
+
+    this.emit('setup-user', { name: 'No-Name' }, () => {
+      this._router.navigateByUrl('');
+    });
+
+    // this.emit('user-disconnect', {}, (res) => {
+    //   console.log('emision de desconeccion', res);
+    // });
+  }
+
   saveUserStorage(payload: Object) {
     const data = JSON.stringify(payload);
     localStorage.setItem(environment.key_storage.user, data);
-    // localStorage.setItem(key, data);
   }
 
   loadUserStorage() {
