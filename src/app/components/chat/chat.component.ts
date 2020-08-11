@@ -26,16 +26,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
+    console.log('Destruccion del chat');
     this.subs.unsubscribe();
   }
 
   enviar() {
-    console.log('mensaje a enviar', this.textMessage);
     if (this.textMessage.length < 1) {
       return;
     }
 
-    this._chatServices.sendMessage('fabian', this.textMessage);
+    this._chatServices.sendMessage(this.textMessage);
     this.textMessage = '';
   }
 }

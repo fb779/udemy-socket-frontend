@@ -5,14 +5,17 @@
   <div class="card-body" id="chat-messages">
     <div
       class="alert"
-      [ngClass]="{ 'alert-success': true, 'alert-primary': false }"
+      [ngClass]="{
+        'alert-success': message.class,
+        'alert-primary': !message.class
+      }"
       role="alert"
       *ngFor="let message of listMessages"
     >
-      <p>Name: {{ message.to }}:</p>
-      <label>
-        {{ message.message }}
-      </label>
+      <p>
+        {{ message.to | uppercase }}:
+        <span> {{ message.message }} </span>
+      </p>
     </div>
     <!-- <div class="alert alert-success" role="alert">
          A simple primary alert—check it out!
